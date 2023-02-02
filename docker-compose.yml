@@ -1,0 +1,37 @@
+version: '3'
+services:
+  broker:
+    build: broker
+    network_mode: "host"
+  auldfellas:
+    build: auldfellas
+    depends_on:
+      - broker
+#    container_name: auldfellas
+    environment:
+      - HOST=broker
+    network_mode: "host"
+  dodgydrivers:
+    build: dodgydrivers
+#    container_name: dodgydrivers
+    depends_on:
+      - broker
+    environment:
+      - HOST=broker
+    network_mode: "host"
+  girlpower:
+    build: girlpower
+#    container_name: girlpower
+    depends_on:
+      - broker
+    environment:
+      - HOST=broker
+    network_mode: "host"
+  client:
+    build: client
+#    container_name: client
+    depends_on:
+      - broker
+    environment:
+      - HOST=broker
+    network_mode: "host"
